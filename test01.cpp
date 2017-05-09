@@ -56,7 +56,7 @@ int main(){
     }
 
     cl_context_properties prop[] = { CL_CONTEXT_PLATFORM, reinterpret_cast<cl_context_properties>(platforms[0]), 0 };
-    cl_context context = clCreateContextFromType(prop, CL_DEVICE_TYPE_DEFAULT, NULL, NULL, NULL);
+    cl_context context = clCreateContextFromType(prop, CL_DEVICE_TYPE_CPU, NULL, NULL, NULL);
     if(context == 0) {
         std::cerr << "Can't create OpenCL context\n";
         return 0;
@@ -144,7 +144,7 @@ int main(){
         }
 
         if(correct) {
-            std::cout << "Data is correct\n";
+            std::cout << "Data is correct ,OK\n";
         } else {
             std::cout << "Data is incorrect\n";
         }

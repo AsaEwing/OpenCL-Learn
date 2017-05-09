@@ -13,6 +13,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <OpenCL/opencl.h>
+#include <opencv2/core/core.hpp>
+#include <opencv2/opencv.hpp> 
+#include <opencv2/highgui/highgui.hpp>
 //#include <CL/opencl.h>
 //#include <CL/CL.h>
 
@@ -44,6 +47,8 @@ int main(int argc, const char * argv[]) {
     cl_device_id *devices;
     char *devname;
     size_t cb;
+
+    IplImage *Image1=cvLoadImage("Koala.jpg",1);
     
     // create a GPU context
     context = clCreateContextFromType(NULL, CL_DEVICE_TYPE_GPU, NULL, NULL, NULL);
@@ -67,11 +72,11 @@ int main(int argc, const char * argv[]) {
     free(devname);
     free(devices);
     clReleaseContext(context);
-
+////////////////////////////////////////////////////////////////////////////////////
     // create a CPU context
     context = clCreateContextFromType(NULL, CL_DEVICE_TYPE_CPU, NULL, NULL, NULL);
     if(context == 0) {
-        printf("Can't create GPU context\n");
+        printf("Can't create CPU context\n");
         return 0;
     }
     
@@ -91,6 +96,14 @@ int main(int argc, const char * argv[]) {
     free(devices);
     clReleaseContext(context);
 
-	system( "read -n 1 -s -p \"Press any key to continue...\"; echo" );
+    cvShowImage("Result",Image1);
+
+    
+    cvWaitKey(0);
+
+    system( "read -n 1 -s -p \"Press any key to continue...\"; echo" );
+
+    cvDestroyWindow("Result");
+
 	return 0;
 }
