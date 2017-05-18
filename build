@@ -1,2 +1,2 @@
 #!/bin/zsh
-g++-7 $(pkg-config --cflags --libs opencv) -g -fopenmp main2.cpp -framework opencl
+g++-7 $(pkg-config --cflags --libs opencv) -g -fopenmp main3.cpp -framework opencl
